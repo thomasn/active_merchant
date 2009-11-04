@@ -11,7 +11,9 @@ module ActiveMerchant #:nodoc:
     READ_TIMEOUT = 60
     
     def self.included(base)
-      base.superclass_delegating_accessor :ssl_strict
+      # base.superclass_delegating_accessor :ssl_strict  ## DISABLED TN:2008-12-13 for ancient Rails,
+      # see http://github.com/Shopify/active_merchant/commit/74abf5675aab97ae1d1886db801d583f0393b962
+      base.class_inheritable_accessor :ssl_strict
       base.ssl_strict = true
       
       base.class_inheritable_accessor :pem_password
@@ -20,10 +22,12 @@ module ActiveMerchant #:nodoc:
       base.class_inheritable_accessor :retry_safe
       base.retry_safe = false
 
-      base.superclass_delegating_accessor :open_timeout
+      # base.superclass_delegating_accessor :open_timeout  ## DISABLED TN:2008-12-13 for ancient Rails,
+      base.class_inheritable_accessor :open_timeout
       base.open_timeout = OPEN_TIMEOUT
 
-      base.superclass_delegating_accessor :read_timeout
+      # base.superclass_delegating_accessor :read_timeout  ## DISABLED TN:2008-12-13 for ancient Rails,
+      base.class_inheritable_accessor :read_timeout
       base.read_timeout = READ_TIMEOUT
     end
     

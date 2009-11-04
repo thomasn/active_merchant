@@ -93,7 +93,8 @@ module ActiveMerchant #:nodoc:
       
       # The application making the calls to the gateway
       # Useful for things like the PayPal build notation (BN) id fields
-      superclass_delegating_accessor :application_id
+      # base.superclass_delegating_accessor :application_id  ## DISABLED TN:2008-12-13 for ancient Rails,
+      class_inheritable_accessor :application_id
       self.application_id = 'ActiveMerchant'
       
       attr_reader :options
