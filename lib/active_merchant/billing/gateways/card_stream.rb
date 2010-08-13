@@ -109,7 +109,9 @@ module ActiveMerchant #:nodoc:
       
       def add_amount(post, money, options)
         add_pair(post, :Amount, amount(money), :required => true)
-        add_pair(post, :CurrencyCode, currency_code(options[:currency] || currency(money)), :required => true)
+        
+# TODO - forcing to GBP #       add_pair(post, :CurrencyCode, currency_code(options[:currency] || currency(money)), :required => true)
+        add_pair(post, :CurrencyCode, "826", :required => true)
       end
 
       def add_customer_data(post, options)
